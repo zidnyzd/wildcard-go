@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="/assets/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - WildZid</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+    <script src="/assets/vendor/js/helpers.js"></script>
+    <script src="/assets/js/config.js"></script>
+</head>
+<body>
+    <div class="container-xxl">
+        <div style="position:absolute;top:20px;right:20px;z-index:10">
+            <a class="nav-link px-0" href="javascript:void(0);" id="theme-toggle" style="color:inherit"><i class="bx bx-moon bx-sm"></i></a>
+        </div>
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="app-brand justify-content-center">
+                            <a href="/" class="app-brand-link gap-2">
+                                <span class="app-brand-text demo text-body fw-bolder" style="text-transform:capitalize">Wild<span class="text-primary">Zid</span></span>
+                            </a>
+                        </div>
+                        <h4 class="mb-2">Buat Akun Baru &#x1F680;</h4>
+                        <div id="register-error" class="alert alert-danger d-none"></div>
+                        <form id="form-register" class="mb-3">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Minimal 3 karakter" autofocus required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Minimal 6 karakter" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="password_confirm" class="form-label">Konfirmasi Password</label>
+                                <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Ulangi password" required />
+                            </div>
+                            <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
+                        </form>
+                        <p class="text-center"><span>Sudah punya akun?</span> <a href="/login"><span>Login</span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/assets/vendor/js/bootstrap.js"></script>
+    <script>
+    document.getElementById('form-register').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const errEl = document.getElementById('register-error');
+        errEl.classList.add('d-none');
+        const res = await fetch('/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams({username: document.getElementById('username').value, password: document.getElementById('password').value, password_confirm: document.getElementById('password_confirm').value})
+        });
+        const json = await res.json();
+        if (json.success) { window.location.href = json.redirect || '/'; }
+        else { errEl.textContent = json.error; errEl.classList.remove('d-none'); }
+    });
+    </script>
+</body>
+</html>

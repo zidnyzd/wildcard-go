@@ -1,0 +1,28 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-md-8 col-12">
+        <div class="card mb-4">
+            <div class="card-header"><h5 class="mb-0">Create Custom Hostname</h5></div>
+            <div class="card-body">
+                <p class="text-muted">Buat custom hostname wildcard. Contoh: <code>support.zoom.us.domain-anda.my.id</code></p>
+                <form id="form-hostname">
+                    <div class="mb-3">
+                        <label class="form-label" for="target_domain">Target Domain</label>
+                        <input type="text" class="form-control" id="target_domain" name="target_domain" placeholder="support.zoom.us" required>
+                        <div class="form-text">Domain yang ingin dibuatkan SSL wildcard-nya</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="method">Validation Method</label>
+                        <select class="form-select" id="method" name="method">
+                            <option value="http">HTTP (otomatis, recommended)</option>
+                            <option value="txt">TXT (manual)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Buat Hostname</button>
+                </form>
+                <div id="hostname-result" class="result-box mt-3 d-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

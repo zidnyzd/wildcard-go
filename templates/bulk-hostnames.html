@@ -1,0 +1,27 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header"><h5 class="mb-0">Bulk Create Hostnames</h5></div>
+            <div class="card-body">
+                <p class="text-muted">Masukkan banyak domain sekaligus, satu per baris.</p>
+                <form id="form-bulk">
+                    <div class="mb-3">
+                        <label class="form-label" for="bulk_domains">Daftar Domain</label>
+                        <textarea class="form-control" id="bulk_domains" name="bulk_domains" rows="6" placeholder="support.zoom.us&#10;api.zoom.us&#10;web.zoom.us" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="bulk_method">Validation Method</label>
+                        <select class="form-select" id="bulk_method" name="method">
+                            <option value="http">HTTP (otomatis, recommended)</option>
+                            <option value="txt">TXT (manual)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="bx bx-layer-plus me-1"></i> Proses Bulk</button>
+                </form>
+                <div id="bulk-log" class="log-container mt-3 d-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

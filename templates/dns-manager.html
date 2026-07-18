@@ -1,0 +1,37 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <h5 class="mb-0">DNS Manager - Cloudflare</h5>
+                <div class="d-flex align-items-center gap-2">
+                    <input type="text" id="dns-filter" placeholder="Filter by name..." class="form-control form-control-sm" style="width:150px">
+                    <button id="btn-dns-add" class="btn btn-sm btn-primary"><i class="bx bx-plus me-1"></i> Add Record</button>
+                    <button id="btn-dns-refresh" class="btn btn-sm btn-secondary"><i class="bx bx-refresh me-1"></i> Refresh</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="dns-list" class="table-responsive text-nowrap"><p class="text-muted">Klik Refresh untuk memuat DNS records.</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit DNS Modal -->
+<div class="modal fade" id="dns-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title" id="dns-modal-title">Edit DNS Record</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <form id="form-dns-edit">
+                <div class="modal-body">
+                    <input type="hidden" id="dns-edit-id">
+                    <div class="row"><div class="col mb-3"><label for="dns-edit-type" class="form-label">Type</label><select id="dns-edit-type" class="form-select"><option value="A">A</option><option value="CNAME">CNAME</option><option value="TXT">TXT</option></select></div></div>
+                    <div class="row"><div class="col mb-3"><label for="dns-edit-name" class="form-label">Name</label><input type="text" id="dns-edit-name" class="form-control" placeholder="subdomain"></div></div>
+                    <div class="row"><div class="col mb-3"><label for="dns-edit-content" class="form-label">Content</label><input type="text" id="dns-edit-content" class="form-control" placeholder="192.168.1.1 or target.domain.com"></div></div>
+                    <div class="row"><div class="col mb-3"><label for="dns-edit-proxied" class="form-label">Proxied</label><select id="dns-edit-proxied" class="form-select"><option value="true">ON (Proxied)</option><option value="false">OFF (DNS only)</option></select></div></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button><button type="submit" class="btn btn-primary">Simpan</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

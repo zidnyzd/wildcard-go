@@ -1,0 +1,89 @@
+{{define "content"}}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header"><h5 class="mb-0">Panduan Setup</h5></div>
+            <div class="card-body">
+                <div class="accordion mt-3" id="accordionExample">
+                    <div class="card accordion-item active">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#acc0" aria-expanded="true">0. Siapkan VPS (Server)</button></h2>
+                        <div id="acc0" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Jalankan script ini di VPS Ubuntu/Debian Anda:</p>
+                                <div class="code-block mb-2"><code>ssh root@IP_VPS_ANDA</code></div>
+                                <div class="code-block mb-2"><code>curl -sS -o vps-setup.sh https://raw.githubusercontent.com/HidePulsa/wildcard-go/main/vps-setup.sh &amp;&amp; chmod +x vps-setup.sh &amp;&amp; sudo ./vps-setup.sh</code></div>
+                                <small class="text-muted">Script akan install Nginx, buat folder ACME challenge, konfigurasi firewall, dan tampilkan IP VPS Anda.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc1">1. Buat &amp; Siapkan Akun Cloudflare</button></h2>
+                        <div id="acc1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ol>
+                                    <li>Daftar di <a href="https://dash.cloudflare.com/sign-up" target="_blank">cloudflare.com</a> (gratis)</li>
+                                    <li>Klik <strong>Add a Site</strong> - masukkan domain Anda</li>
+                                    <li>Pilih paket <strong>Free</strong></li>
+                                    <li>Update nameserver domain di registrar sesuai instruksi Cloudflare</li>
+                                    <li>Tunggu hingga status domain <strong>Active</strong></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc2">2. Verifikasi Payment Method</button></h2>
+                        <div id="acc2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>SSL for SaaS (Custom Hostnames) butuh payment method terverifikasi meskipun 100 hostname pertama gratis.</p>
+                                <ol>
+                                    <li>Dashboard Cloudflare - Billing - Payment Methods</li>
+                                    <li>Klik <strong>Add Payment Method</strong> (CC/PayPal)</li>
+                                    <li>Cloudflare akan auth ~$1 (direfund otomatis)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc3">3. Ambil API Token &amp; Zone ID</button></h2>
+                        <div id="acc3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ol>
+                                    <li>Profile - API Tokens - <strong>Create Custom Token</strong></li>
+                                    <li>Permissions: <code>Zone:DNS:Edit</code> + <code>Zone:SSL:Edit</code></li>
+                                    <li>Zone Resources: <strong>Include - Specific zone</strong> - pilih domain Anda</li>
+                                    <li>Copy token (hanya ditampilkan sekali!)</li>
+                                    <li>Zone ID: Dashboard domain - scroll kanan bawah</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc4">4. Isi Credentials</button></h2>
+                        <div id="acc4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Menu <strong>Credentials</strong> - isi API Token, Zone ID, Domain, dan IP VPS. Klik <strong>Save &amp; Verify</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc5">5. Setup Fallback Origin</button></h2>
+                        <div id="acc5" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Menu <strong>Setup Fallback</strong> - klik tombol <strong>Jalankan Setup Fallback</strong>. Ini akan membuat DNS records dan set fallback origin.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card accordion-item">
+                        <h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc6">6. Buat Custom Hostname</button></h2>
+                        <div id="acc6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Menu <strong>Create Hostname</strong> - masukkan target domain (contoh: <code>support.zoom.us</code>). SSL akan aktif dalam 2-5 menit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

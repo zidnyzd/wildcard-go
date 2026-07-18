@@ -1,0 +1,162 @@
+/* Custom Dark Mode for Sneat Free */
+
+html.dark-mode body {
+    background-color: #232333;
+    color: #a1b0cb;
+}
+
+html.dark-mode .bg-menu-theme,
+html.dark-mode .bg-navbar-theme,
+html.dark-mode .bg-footer-theme,
+html.dark-mode .card,
+html.dark-mode .modal-content,
+html.dark-mode .dropdown-menu {
+    background-color: #2b2c40 !important;
+    color: #a1b0cb;
+}
+
+html.dark-mode .card-header,
+html.dark-mode .modal-header,
+html.dark-mode .modal-footer {
+    background-color: transparent;
+    border-color: #444564;
+}
+
+html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, 
+html.dark-mode h4, html.dark-mode h5, html.dark-mode h6,
+html.dark-mode .text-body, html.dark-mode .app-brand-text {
+    color: #cbcbe2 !important;
+}
+
+html.dark-mode .text-muted {
+    color: #7071a4 !important;
+}
+
+html.dark-mode .border, 
+html.dark-mode .card,
+html.dark-mode .table th, 
+html.dark-mode .table td,
+html.dark-mode .dropdown-divider {
+    border-color: #444564 !important;
+}
+
+html.dark-mode .form-control, 
+html.dark-mode .form-select, 
+html.dark-mode .input-group-text {
+    background-color: #232333;
+    border-color: #444564;
+    color: #cbcbe2;
+}
+
+html.dark-mode .form-control:focus, 
+html.dark-mode .form-select:focus {
+    background-color: #232333;
+    border-color: #696cff;
+    color: #cbcbe2;
+}
+
+html.dark-mode .input-group-text {
+    background-color: #2b2c40;
+}
+
+html.dark-mode .table {
+    color: #a1b0cb;
+}
+
+html.dark-mode .table-hover > tbody > tr:hover > * {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #cbcbe2;
+}
+
+html.dark-mode .accordion-item {
+    background-color: #2b2c40;
+    border-color: #444564;
+}
+
+html.dark-mode .accordion-button {
+    background-color: #2b2c40;
+    color: #cbcbe2;
+}
+
+html.dark-mode .accordion-button:not(.collapsed) {
+    background-color: rgba(105, 108, 255, 0.16);
+    color: #696cff;
+}
+
+html.dark-mode .menu-link {
+    color: #a1b0cb;
+}
+
+html.dark-mode .menu-item.active > .menu-link {
+    background-color: rgba(105, 108, 255, 0.16) !important;
+    color: #696cff !important;
+}
+
+html.dark-mode .menu-item.active > .menu-link i {
+    color: #696cff !important;
+}
+
+html.dark-mode .menu-item:not(.active) > .menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+html.dark-mode .dropdown-item {
+    color: #a1b0cb;
+}
+
+html.dark-mode .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #cbcbe2;
+}
+
+html.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+html.dark-mode .bg-light {
+    background-color: #232333 !important;
+}
+
+html.dark-mode .result-box {
+    background-color: #232333;
+    border: 1px solid #444564;
+    color: #cbcbe2;
+}
+
+html.dark-mode .log-entry {
+    border-left-color: #444564;
+}
+
+html.dark-mode .code-block {
+    background-color: #232333;
+    border-color: #444564;
+    color: #cbcbe2;
+}
+
+html.dark-mode .form-label {
+    color: #cbcbe2;
+}
+
+html.dark-mode .alert-warning {
+    background-color: rgba(255, 171, 0, 0.16);
+    color: #ffab00;
+    border-color: transparent;
+}
+
+html.dark-mode .alert-info {
+    background-color: rgba(3, 195, 236, 0.16);
+    color: #03c3ec;
+    border-color: transparent;
+}
+
+html.dark-mode .alert-success {
+    background-color: rgba(113, 221, 55, 0.16);
+    color: #71dd37;
+    border-color: transparent;
+}
+
+html.dark-mode .alert-danger {
+    background-color: rgba(255, 62, 29, 0.16);
+    color: #ff3e1d;
+    border-color: transparent;
+}

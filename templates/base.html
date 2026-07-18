@@ -1,0 +1,148 @@
+{{define "base"}}<!DOCTYPE html>
+<html lang="id" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - WildZid</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/css/dark-mode.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <script src="/assets/vendor/js/helpers.js"></script>
+    <script src="/assets/js/config.js"></script>
+    <style>
+        .result-box { font-family:'Cascadia Code','Fira Code',monospace; font-size:.85rem; max-height:400px; overflow:auto; white-space:pre-wrap; word-break:break-all; }
+        .log-container { max-height:500px; overflow-y:auto; font-family:'Cascadia Code','Fira Code',monospace; font-size:.85rem; }
+        .log-entry { padding:8px 10px; border-left:3px solid #d9dee3; margin-bottom:6px; border-radius:0 0.375rem 0.375rem 0; }
+        .log-entry.success { border-left-color:#71dd37; background:rgba(113,221,55,0.1); }
+        .log-entry.error { border-left-color:#ff3e1d; background:rgba(255,62,29,0.1); }
+        .log-entry.info { border-left-color:#696cff; background:rgba(105,108,255,0.1); }
+        .log-entry .log-step { font-weight:600; }
+        .log-entry .log-msg { color:#697a8d; margin-top:2px; }
+        .code-block { background:#f5f5f9; border:1px solid #d9dee3; border-radius:0.375rem; padding:10px 14px; font-family:'Cascadia Code','Fira Code',monospace; font-size:.85rem; overflow-x:auto; white-space:nowrap; }
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="/" class="app-brand-link">
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform:capitalize">Wild<span class="text-primary">Zid</span></span>
+                    </a>
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"><i class="bx bx-chevron-left bx-sm align-middle"></i></a>
+                </div>
+                <div class="menu-inner-shadow"></div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item {{activeClass .ActiveMenu "dashboard"}}">
+                        <a href="/" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a>
+                    </li>
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Configuration</span></li>
+                    <li class="menu-item {{activeClass .ActiveMenu "credentials"}}">
+                        <a href="/credentials" class="menu-link"><i class="menu-icon tf-icons bx bx-key"></i><div>Credentials</div></a>
+                    </li>
+                    <li class="menu-item {{activeClass .ActiveMenu "setup-fallback"}}">
+                        <a href="/setup-fallback" class="menu-link"><i class="menu-icon tf-icons bx bx-server"></i><div>Setup Fallback</div></a>
+                    </li>
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Hostnames</span></li>
+                    <li class="menu-item {{activeClass .ActiveMenu "create-hostname"}}">
+                        <a href="/create-hostname" class="menu-link"><i class="menu-icon tf-icons bx bx-plus-circle"></i><div>Create Hostname</div></a>
+                    </li>
+                    <li class="menu-item {{activeClass .ActiveMenu "bulk-hostnames"}}">
+                        <a href="/bulk-hostnames" class="menu-link"><i class="menu-icon tf-icons bx bx-layer"></i><div>Bulk Hostnames</div></a>
+                    </li>
+                    <li class="menu-item {{activeClass .ActiveMenu "list-hostnames"}}">
+                        <a href="/list-hostnames" class="menu-link"><i class="menu-icon tf-icons bx bx-list-ul"></i><div>List Hostnames</div></a>
+                    </li>
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Tools</span></li>
+                    <li class="menu-item {{activeClass .ActiveMenu "dns-manager"}}">
+                        <a href="/dns-manager" class="menu-link"><i class="menu-icon tf-icons bx bx-globe"></i><div>DNS Manager</div></a>
+                    </li>
+                </ul>
+            </aside>
+            <div class="layout-page">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a>
+                    </div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <div class="navbar-nav align-items-center"><div class="nav-item d-flex align-items-center"><h5 class="mb-0">{{.PageTitle}}</h5></div></div>
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <li class="nav-item me-3"><a class="nav-link px-0" href="javascript:void(0);" id="theme-toggle"><i class="bx bx-moon bx-sm"></i></a></li>
+                            <li class="nav-item lh-1 me-3"><span class="badge bg-label-secondary" id="conn-status">&#x23F3 Disconnected</span></li>
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online"><img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /></div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><div class="d-flex"><div class="flex-shrink-0 me-3"><div class="avatar avatar-online"><img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /></div></div><div class="flex-grow-1"><span class="fw-semibold d-block">{{.Username}}</span><small class="text-muted">Admin</small></div></div></a></li>
+                                    <li><div class="dropdown-divider"></div></li>
+                                    <li><a class="dropdown-item" href="/logout"><i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        {{template "content" .}}
+                    </div>
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">&copy; <script>document.write(new Date().getFullYear())</script>, made with &#x2764;&#xFE0F; by <a href="https://zidstore.net" target="_blank" class="footer-link fw-bolder">ZidStore</a></div>
+                            <div><span class="footer-link me-4">Free method - jangan dijual</span></div>
+                        </div>
+                    </footer>
+                    <div class="content-backdrop fade"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- Log Modal -->
+    <div class="modal fade" id="log-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Log Detail</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><pre id="log-modal-body" class="result-box bg-light p-3 rounded"></pre></div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/assets/vendor/js/bootstrap.js"></script>
+    <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/assets/vendor/js/menu.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+    // Global connection status check
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const res = await fetch('/check-status-global', {method:'POST'});
+            const json = await res.json();
+            const el = document.getElementById('conn-status');
+            if (el) {
+                if (json.connected) { el.className='badge bg-label-success'; el.textContent='\u25CF Connected'; }
+                else { el.className='badge bg-label-secondary'; el.textContent='\u23F3 Disconnected'; }
+            }
+        } catch(e) {}
+    });
+    // Theme toggle
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark-mode');
+    document.getElementById('theme-toggle')?.addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark-mode');
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        this.innerHTML = isDark ? '<i class="bx bx-sun bx-sm"></i>' : '<i class="bx bx-moon bx-sm"></i>';
+    });
+    </script>
+</body>
+</html>{{end}}

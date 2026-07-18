@@ -1,0 +1,5 @@
+wildcard.db
+wildcard-go
+*.db
+*.db-wal
+*.db-shm
